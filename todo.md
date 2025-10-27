@@ -23,3 +23,6 @@
 
 - [x] Add Dave Meyer image with text wrapping to About page
 
+
+- [x] Update About page heading to remove redundant title information
+

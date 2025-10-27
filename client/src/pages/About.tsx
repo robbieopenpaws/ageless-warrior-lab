@@ -31,7 +31,7 @@ export default function About() {
             <div className="prose prose-invert prose-lg max-w-none">
               <div className="bg-white/5 p-8 rounded-lg mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-[#E31E24]">
-                  Dave Meyer | Host, Ageless Warrior Lab podcast | Co-founder and CEO of Food System Innovations and Humane American Animal Foundation
+                  Co-founder and CEO of Food System Innovations and Humane American Animal Foundation
                 </h2>
                 
                 <img 
