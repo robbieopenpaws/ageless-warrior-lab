@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, episodes, InsertEpisode } from "../drizzle/schema";
+import { InsertUser, users, episodes, InsertEpisode, contactSubmissions, InsertContactSubmission } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -143,5 +143,21 @@ export async function upsertEpisode(episode: InsertEpisode) {
 export async function bulkUpsertEpisodes(episodesList: InsertEpisode[]) {
   for (const episode of episodesList) {
     await upsertEpisode(episode);
+  }
+}
+
+export async function createContactSubmission(data: InsertContactSubmission) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create contact submission: database not available");
+    return null;
+  }
+
+  try {
+    const result = await db.insert(contactSubmissions).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create contact submission:", error);
+    throw error;
   }
 }

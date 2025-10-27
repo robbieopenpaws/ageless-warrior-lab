@@ -15,6 +15,13 @@
       "when": 1761594253898,
       "tag": "0001_short_guardian",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1761607996668,
+      "tag": "0002_lethal_longshot",
+      "breakpoints": true
     }
   ]
 }

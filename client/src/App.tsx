@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Episodes from "./pages/Episodes";
 import Episode from "./pages/Episode";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path={"/episodes"} component={Episodes} />
       <Route path={"/episode/:videoId"} component={Episode} />
       <Route path={"/about"} component={About} />
+      <Route path={"/contact"} component={Contact} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

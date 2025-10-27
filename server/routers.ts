@@ -2,6 +2,9 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { z } from "zod";
+import { createContactSubmission } from "./db";
+import { notifyOwner } from "./_core/notification";
 
 export const appRouter = router({
   system: systemRouter,
@@ -89,6 +92,28 @@ export const appRouter = router({
       
       return { success: true, count: allVideos.length };
     }),
+  }),
+
+  contact: router({
+    submit: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1, "Name is required"),
+          email: z.string().email("Valid email is required"),
+          message: z.string().min(10, "Message must be at least 10 characters"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        await createContactSubmission(input);
+        
+        // Notify owner about new contact form submission
+        await notifyOwner({
+          title: "New Contact Form Submission",
+          content: `From: ${input.name} (${input.email})\n\nMessage:\n${input.message}`,
+        });
+        
+        return { success: true };
+      }),
   }),
 });
 

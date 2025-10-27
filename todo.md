@@ -26,3 +26,9 @@
 
 - [x] Update About page heading to remove redundant title information
 
+
+- [x] Create contact page with form
+- [x] Add contact form database schema
+- [x] Add contact form submission handler
+- [x] Add contact link to navigation
+

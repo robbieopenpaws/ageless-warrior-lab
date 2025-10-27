@@ -53,6 +53,9 @@ export default function Episode() {
             <Link href="/about" className="text-white/80 hover:text-white transition-colors font-medium">
               About
             </Link>
+            <Link href="/contact" className="text-white/80 hover:text-white transition-colors font-medium">
+              Contact
+            </Link>
           </div>
         </div>
       </nav>
