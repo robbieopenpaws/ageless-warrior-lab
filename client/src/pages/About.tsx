@@ -6,21 +6,15 @@ export default function About() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-3">
-              <img src="/awl-logo.svg" alt="AWL" className="h-10" />
-            </a>
+          <Link href="/" className="flex items-center gap-3">
+            <img src="/awl-logo.svg" alt="AWL" className="h-10" />
           </Link>
           <div className="flex gap-8 items-center">
-            <Link href="/episodes">
-              <a className="text-white/80 hover:text-white transition-colors font-medium">
-                Episodes
-              </a>
+            <Link href="/episodes" className="text-white/80 hover:text-white transition-colors font-medium">
+              Episodes
             </Link>
-            <Link href="/about">
-              <a className="text-[#E31E24] font-bold transition-colors">
-                About
-              </a>
+            <Link href="/about" className="text-[#E31E24] font-bold transition-colors">
+              About
             </Link>
           </div>
         </div>
@@ -72,10 +66,8 @@ export default function About() {
               </div>
 
               <div className="text-center mt-12">
-                <Link href="/episodes">
-                  <a className="inline-block bg-[#E31E24] hover:bg-[#C01A1F] text-white font-bold px-8 py-4 rounded-lg transition-colors">
-                    Watch Episodes
-                  </a>
+                <Link href="/episodes" className="inline-block bg-[#E31E24] hover:bg-[#C01A1F] text-white font-bold px-8 py-4 rounded-lg transition-colors">
+                  Watch Episodes
                 </Link>
               </div>
             </div>

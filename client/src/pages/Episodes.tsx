@@ -16,21 +16,15 @@ export default function Episodes() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-3">
-              <img src="/awl-logo.svg" alt="AWL" className="h-10" />
-            </a>
+          <Link href="/" className="flex items-center gap-3">
+            <img src="/awl-logo.svg" alt="AWL" className="h-10" />
           </Link>
           <div className="flex gap-8 items-center">
-            <Link href="/episodes">
-              <a className="text-[#E31E24] font-bold transition-colors">
-                Episodes
-              </a>
+            <Link href="/episodes" className="text-[#E31E24] font-bold transition-colors">
+              Episodes
             </Link>
-            <Link href="/about">
-              <a className="text-white/80 hover:text-white transition-colors font-medium">
-                About
-              </a>
+            <Link href="/about" className="text-white/80 hover:text-white transition-colors font-medium">
+              About
             </Link>
           </div>
         </div>
@@ -67,8 +61,7 @@ export default function Episodes() {
           ) : episodes && episodes.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {episodes.map((episode) => (
-                <Link key={episode.id} href={`/episode/${episode.videoId}`}>
-                  <a className="group block bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden">
+                <Link key={episode.id} href={`/episode/${episode.videoId}`} className="group block bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden">
                     <div className="aspect-video relative overflow-hidden">
                       {episode.thumbnailUrl && (
                         <img
@@ -90,7 +83,6 @@ export default function Episodes() {
                         )}
                       </div>
                     </div>
-                  </a>
                 </Link>
               ))}
             </div>

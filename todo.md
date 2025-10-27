@@ -17,3 +17,6 @@
 
 - [x] Fix hero image alignment to show warrior at top on desktop
 
+
+- [x] Fix nested anchor tag errors in navigation and episode links
+
