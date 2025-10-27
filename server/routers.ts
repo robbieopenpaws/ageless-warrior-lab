@@ -92,6 +92,54 @@ export const appRouter = router({
       
       return { success: true, count: allVideos.length };
     }),
+    
+    generateSummary: publicProcedure
+      .input((val: unknown) => {
+        if (typeof val === 'string') return val;
+        throw new Error('videoId must be a string');
+      })
+      .mutation(async ({ input: videoId }) => {
+        const { getEpisodeByVideoId, bulkUpsertEpisodes } = await import("./db");
+        const { invokeLLM } = await import("./_core/llm");
+        
+        const episode = await getEpisodeByVideoId(videoId);
+        if (!episode) {
+          throw new Error('Episode not found');
+        }
+        
+        // Generate summary using LLM based on title and description
+        const prompt = `You are a podcast episode summarizer. Based on the following podcast episode information, write a compelling 2-paragraph summary that captures the key themes and insights discussed.
+
+Episode Title: ${episode.title}
+
+Episode Description: ${episode.description || 'No description available'}
+
+Write a professional, engaging summary in 2 paragraphs that would entice listeners to watch this episode. Focus on the main topics, key insights, and value the episode provides.`;
+        
+        const response = await invokeLLM({
+          messages: [
+            { role: "system", content: "You are a professional podcast content writer who creates engaging episode summaries." },
+            { role: "user", content: prompt }
+          ]
+        });
+        
+        const summary = String(response.choices[0]?.message?.content || '');
+        
+        // Update episode with summary
+        await bulkUpsertEpisodes([{
+          videoId: episode.videoId,
+          title: episode.title,
+          description: episode.description,
+          publishedTimeText: episode.publishedTimeText,
+          lengthSeconds: episode.lengthSeconds,
+          views: episode.views,
+          thumbnailUrl: episode.thumbnailUrl,
+          isLiveNow: episode.isLiveNow,
+          summary
+        }]);
+        
+        return { success: true, summary };
+      }),
   }),
 
   contact: router({

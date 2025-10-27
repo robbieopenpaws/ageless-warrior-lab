@@ -52,6 +52,7 @@ export const episodes = mysqlTable("episodes", {
   views: int("views"),
   thumbnailUrl: text("thumbnailUrl"),
   isLiveNow: int("isLiveNow").default(0),
+  summary: text("summary"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

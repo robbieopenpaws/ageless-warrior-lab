@@ -2,15 +2,26 @@ import { useRoute, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Loader2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function Episode() {
   const [, params] = useRoute("/episode/:videoId");
   const videoId = params?.videoId;
 
-  const { data: episode, isLoading } = trpc.episodes.getByVideoId.useQuery(
+  const { data: episode, isLoading, refetch } = trpc.episodes.getByVideoId.useQuery(
     videoId || "",
     { enabled: !!videoId }
   );
+  
+  const generateSummaryMutation = trpc.episodes.generateSummary.useMutation({
+    onSuccess: () => {
+      refetch();
+      toast.success("Episode summary generated!");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to generate summary");
+    },
+  });
 
   if (isLoading) {
     return (
@@ -67,6 +78,39 @@ export default function Episode() {
             <ArrowLeft className="h-4 w-4" />
             Back to Episodes
           </Link>
+
+          {/* AI-Generated Summary */}
+          <div className="max-w-5xl mx-auto mb-8">
+            {episode.summary ? (
+              <div className="bg-white/5 p-6 rounded-lg">
+                <h2 className="text-2xl font-bold mb-4 text-[#E31E24]">Episode Summary</h2>
+                <div className="text-white/80 leading-relaxed whitespace-pre-line">
+                  {episode.summary}
+                </div>
+              </div>
+            ) : (
+              <div className="bg-white/5 p-6 rounded-lg flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold mb-2 text-[#E31E24]">No Summary Available</h2>
+                  <p className="text-white/60">Generate an AI summary of this episode</p>
+                </div>
+                <Button
+                  onClick={() => generateSummaryMutation.mutate(videoId || "")}
+                  disabled={generateSummaryMutation.isPending}
+                  className="bg-[#E31E24] hover:bg-[#C01A1F] text-white"
+                >
+                  {generateSummaryMutation.isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    "Generate Summary"
+                  )}
+                </Button>
+              </div>
+            )}
+          </div>
 
           {/* Video Player */}
           <div className="aspect-video w-full max-w-5xl mx-auto mb-8 bg-black">

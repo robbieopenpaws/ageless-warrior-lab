@@ -35,3 +35,9 @@
 
 - [x] Update footer text to include "A Dave Meyer Podcast"
 
+
+- [x] Add AI-generated episode summaries from video captions/transcripts
+- [x] Update database schema to store episode summaries
+- [x] Add podcast platform icons and links to homepage
+- [x] Fetch and store podcast platform URLs
+
