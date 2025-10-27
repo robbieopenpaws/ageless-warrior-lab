@@ -25,4 +25,22 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/**
+ * Episodes table for storing YouTube video data
+ */
+export const episodes = mysqlTable("episodes", {
+  id: int("id").autoincrement().primaryKey(),
+  videoId: varchar("videoId", { length: 64 }).notNull().unique(),
+  title: text("title").notNull(),
+  description: text("description"),
+  publishedTimeText: varchar("publishedTimeText", { length: 64 }),
+  lengthSeconds: int("lengthSeconds"),
+  views: int("views"),
+  thumbnailUrl: text("thumbnailUrl"),
+  isLiveNow: int("isLiveNow").default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Episode = typeof episodes.$inferSelect;
+export type InsertEpisode = typeof episodes.$inferInsert;

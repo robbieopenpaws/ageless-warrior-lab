@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, episodes, InsertEpisode } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,59 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+/**
+ * Episode queries
+ */
+export async function getAllEpisodes() {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get episodes: database not available");
+    return [];
+  }
+  
+  const result = await db.select().from(episodes);
+  return result;
+}
+
+export async function getEpisodeByVideoId(videoId: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get episode: database not available");
+    return undefined;
+  }
+  
+  const result = await db.select().from(episodes).where(eq(episodes.videoId, videoId)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function upsertEpisode(episode: InsertEpisode) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot upsert episode: database not available");
+    return;
+  }
+  
+  try {
+    await db.insert(episodes).values(episode).onDuplicateKeyUpdate({
+      set: {
+        title: episode.title,
+        description: episode.description,
+        publishedTimeText: episode.publishedTimeText,
+        lengthSeconds: episode.lengthSeconds,
+        views: episode.views,
+        thumbnailUrl: episode.thumbnailUrl,
+        isLiveNow: episode.isLiveNow,
+        updatedAt: new Date(),
+      },
+    });
+  } catch (error) {
+    console.error("[Database] Failed to upsert episode:", error);
+    throw error;
+  }
+}
+
+export async function bulkUpsertEpisodes(episodesList: InsertEpisode[]) {
+  for (const episode of episodesList) {
+    await upsertEpisode(episode);
+  }
+}

@@ -5,12 +5,17 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Episodes from "./pages/Episodes";
+import Episode from "./pages/Episode";
+import About from "./pages/About";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/episodes"} component={Episodes} />
+      <Route path={"/episode/:videoId"} component={Episode} />
+      <Route path={"/about"} component={About} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
@@ -27,8 +32,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider
-        defaultTheme="light"
-        // switchable
+        defaultTheme="dark"
       >
         <TooltipProvider>
           <Toaster />
