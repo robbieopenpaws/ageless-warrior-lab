@@ -34,6 +34,12 @@ export default function About() {
                   Dave Meyer | Host, Ageless Warrior Lab podcast | Co-founder and CEO of Food System Innovations and Humane American Animal Foundation
                 </h2>
                 
+                <img 
+                  src="/dave-meyer.jpg" 
+                  alt="Dave Meyer in Brazilian Jiu Jitsu Gi" 
+                  className="float-left mr-6 mb-4 w-64 h-auto rounded-lg shadow-lg"
+                />
+                
                 <div className="space-y-6 text-white/80 leading-relaxed">
                   <p>
                     David Meyer is a pioneering American Brazilian Jiu Jitsu practitioner, and accomplished non-profit founder and Philanthropist.

@@ -20,3 +20,6 @@
 
 - [x] Fix nested anchor tag errors in navigation and episode links
 
+
+- [x] Add Dave Meyer image with text wrapping to About page
+
