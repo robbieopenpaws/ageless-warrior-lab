@@ -50,7 +50,7 @@ export default function Home() {
             transform: `translateY(${parallaxOffset}px)`,
             backgroundImage: "url(/hero-warrior.png)",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center top",
           }}
         />
         

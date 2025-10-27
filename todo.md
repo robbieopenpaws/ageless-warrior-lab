@@ -14,3 +14,6 @@
 - [x] Test responsive design
 - [x] Create checkpoint and prepare for deployment
 
+
+- [x] Fix hero image alignment to show warrior at top on desktop
+
