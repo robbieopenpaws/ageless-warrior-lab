@@ -32,3 +32,6 @@
 - [x] Add contact form submission handler
 - [x] Add contact link to navigation
 
+
+- [x] Update footer text to include "A Dave Meyer Podcast"
+

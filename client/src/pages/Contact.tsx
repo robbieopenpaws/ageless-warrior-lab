@@ -130,7 +130,7 @@ export default function Contact() {
       {/* Footer */}
       <footer className="bg-black border-t border-white/10 py-8">
         <div className="container mx-auto px-6 text-center text-white/60">
-          <p>&copy; {new Date().getFullYear()} The Ageless Warrior Lab. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} A Dave Meyer Podcast | The Ageless Warrior Lab. All rights reserved.</p>
         </div>
       </footer>
     </div>
