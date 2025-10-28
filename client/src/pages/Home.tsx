@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
+import MobileNav from "@/components/MobileNav";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -20,8 +21,8 @@ export default function Home() {
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
       setMousePosition({ x, y });
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const parallaxOffset = scrollY * 0.5;
@@ -32,9 +33,10 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/awl_logo.svg" alt="AWL" className="h-10" />
+            <img src="/awl_logo.svg" alt="AWL" className="h-10 hidden md:block" />
+            <img src="/awl_logo_mobile.svg" alt="AWL" className="h-10 md:hidden" />
           </Link>
-          <div className="flex gap-8 items-center">
+          <div className="hidden md:flex gap-8 items-center">
             <Link href="/episodes" className="text-white/80 hover:text-white transition-colors font-medium">
               Episodes
             </Link>
@@ -45,6 +47,7 @@ export default function Home() {
               Contact
             </Link>
           </div>
+          <div className="md:hidden"><MobileNav /></div>
         </div>
       </nav>
 

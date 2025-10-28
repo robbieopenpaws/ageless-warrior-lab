@@ -74,3 +74,8 @@
 - [x] Fix missing logo in the top left corner
 - [x] Fix missing warrior on the mountain image in the hero section
 
+
+
+- [x] Implement hamburger menu for mobile navigation
+- [x] Simplify logo on mobile to show only 'AWL' in a red triangle
+
