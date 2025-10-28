@@ -69,3 +69,8 @@
 - [x] Fix transparent PNG showing grey checkered pattern
 - [x] Add orange/yellow sky background layer for parallax effect
 
+
+
+- [x] Fix missing logo in the top left corner
+- [x] Fix missing warrior on the mountain image in the hero section
+

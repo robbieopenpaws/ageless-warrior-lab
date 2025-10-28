@@ -32,7 +32,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/awl-logo.svg" alt="AWL" className="h-10" />
+            <img src="/awl_logo.svg" alt="AWL" className="h-10" />
           </Link>
           <div className="flex gap-8 items-center">
             <Link href="/episodes" className="text-white/80 hover:text-white transition-colors font-medium">
@@ -65,9 +65,9 @@ export default function Home() {
           }}
         >
           <img
-            src="/warrior_mountain.png"
+            src="/warrior_mountain_transparent.png"
             alt="Warrior on Mountain"
-            className="h-full w-auto object-contain"
+            style={{ maxWidth: '2000px', width: '150%', height: 'auto', position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)' }}
           />
         </div>
         
