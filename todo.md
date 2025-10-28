@@ -47,3 +47,6 @@
 - [x] Move summary display to below episode metadata (title, date, views)
 - [x] Store generated summaries in database for reuse
 
+
+- [x] Fix database error when generating summary (slug field missing)
+

@@ -149,6 +149,7 @@ Write a professional, engaging summary in 2 paragraphs that would entice listene
         // Update episode with summary
         await bulkUpsertEpisodes([{
           videoId: episode.videoId,
+          slug: episode.slug,
           title: episode.title,
           description: episode.description,
           publishedTimeText: episode.publishedTimeText,
