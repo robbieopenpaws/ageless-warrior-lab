@@ -5,6 +5,7 @@ import { trpc } from "@/lib/trpc";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { data: episodes, isLoading } = trpc.episodes.list.useQuery();
 
   useEffect(() => {
@@ -13,7 +14,16 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate parallax offset
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      setMousePosition({ x, y });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const parallaxOffset = scrollY * 0.5;
 
   return (
@@ -41,15 +51,23 @@ export default function Home() {
       {/* Hero Section with Parallax */}
       <section className="relative h-screen overflow-hidden">
         {/* Background Image with Parallax */}
+        {/* Black background */}
+        <div className="absolute inset-0 bg-black" />
+        
+        {/* Parallax warrior and mountain */}
         <div
-          className="absolute inset-0 w-full h-[120vh]"
+          className="absolute inset-0 flex items-start justify-center pt-20"
           style={{
-            transform: `translateY(${parallaxOffset}px)`,
-            backgroundImage: "url(/hero-warrior.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
+            transform: `translate(${mousePosition.x * 40}px, ${mousePosition.y * 40}px) translateY(${parallaxOffset}px)`,
+            transition: 'transform 0.15s ease-out',
           }}
-        />
+        >
+          <img
+            src="/warrior_mountain_transparent.png"
+            alt="Warrior on Mountain"
+            className="h-full w-auto object-contain"
+          />
+        </div>
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" />

@@ -61,3 +61,7 @@
 
 - [x] Fix YouTube thumbnail not loading for first episode (fixed by sync)
 
+
+- [x] Create transparent PNG of warrior on mountain for enhanced parallax effect
+- [x] Implement mouse-tracking parallax effect on homepage
+
