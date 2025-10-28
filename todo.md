@@ -87,3 +87,6 @@
 
 - [x] Move warrior image down so mountain base extends below visible area
 
+
+- [x] Shift mountain image down 30px so base extends below black bar
+
