@@ -56,4 +56,8 @@
 
 
 - [x] Fix broken thumbnail for first episode on episodes page
+- [x] Set up automated YouTube sync every Wednesday at 10am GMT
+
+
+- [x] Fix YouTube thumbnail not loading for first episode (fixed by sync)
 
