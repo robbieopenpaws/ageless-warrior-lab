@@ -68,7 +68,7 @@ export default function Home() {
           }}
         >
           <img
-            src="/warrior_mountain_transparent.png?v=2"
+            src="/warrior_mountain_transparent.png?v=3"
             alt="Warrior on Mountain"
             className="w-full max-w-3xl h-auto"
             style={{ marginBottom: '-15%' }}
