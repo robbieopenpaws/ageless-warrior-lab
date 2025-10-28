@@ -2,6 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { createContactSubmission } from "./db";
 import { notifyOwner } from "./_core/notification";
@@ -21,6 +22,15 @@ export const appRouter = router({
   }),
 
   episodes: router({
+    getBySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        const { getEpisodeBySlug } = await import("./db");
+        const episode = await getEpisodeBySlug(input.slug);
+        if (!episode) throw new TRPCError({ code: 'NOT_FOUND', message: 'Episode not found' });
+        return episode;
+      }),
+
     list: publicProcedure.query(async () => {
       const { getAllEpisodes } = await import("./db");
       return getAllEpisodes();
@@ -70,8 +80,19 @@ export const appRouter = router({
             const thumbnails = video.thumbnails || [];
             const thumbnailUrl = thumbnails.length > 0 ? thumbnails[thumbnails.length - 1].url : null;
             
+            // Generate slug from title
+            const slug = video.title
+              .toLowerCase()
+              .trim()
+              .replace(/\s+/g, '-')
+              .replace(/[^\w\-]+/g, '')
+              .replace(/\-\-+/g, '-')
+              .replace(/^-+/, '')
+              .replace(/-+$/, '');
+            
             allVideos.push({
               videoId: video.videoId,
+              slug,
               title: video.title,
               description: video.descriptionSnippet || '',
               publishedTimeText: video.publishedTimeText,

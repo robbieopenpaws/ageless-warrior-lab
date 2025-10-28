@@ -114,6 +114,17 @@ export async function getEpisodeByVideoId(videoId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
+export async function getEpisodeBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get episode: database not available");
+    return undefined;
+  }
+  
+  const result = await db.select().from(episodes).where(eq(episodes.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
 export async function upsertEpisode(episode: InsertEpisode) {
   const db = await getDb();
   if (!db) {
@@ -124,6 +135,7 @@ export async function upsertEpisode(episode: InsertEpisode) {
   try {
     await db.insert(episodes).values(episode).onDuplicateKeyUpdate({
       set: {
+        slug: episode.slug,
         title: episode.title,
         description: episode.description,
         publishedTimeText: episode.publishedTimeText,
@@ -131,6 +143,7 @@ export async function upsertEpisode(episode: InsertEpisode) {
         views: episode.views,
         thumbnailUrl: episode.thumbnailUrl,
         isLiveNow: episode.isLiveNow,
+        summary: episode.summary,
         updatedAt: new Date(),
       },
     });

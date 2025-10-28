@@ -15,7 +15,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/episodes"} component={Episodes} />
-      <Route path={"/episode/:videoId"} component={Episode} />
+      <Route path={"/episode/:slug"} component={Episode} />
       <Route path={"/about"} component={About} />
       <Route path={"/contact"} component={Contact} />
       <Route path={"/404"} component={NotFound} />

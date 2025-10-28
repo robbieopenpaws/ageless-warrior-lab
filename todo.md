@@ -41,3 +41,9 @@
 - [x] Add podcast platform icons and links to homepage
 - [x] Fetch and store podcast platform URLs
 
+
+- [x] Update episode URLs to use slugified episode names instead of video IDs
+- [x] Auto-generate AI summary when episode page is first opened
+- [x] Move summary display to below episode metadata (title, date, views)
+- [x] Store generated summaries in database for reuse
+

@@ -1,34 +1,35 @@
-import { useRoute, Link } from "wouter";
+import { useRoute } from "wouter";
 import { trpc } from "@/lib/trpc";
-import { Loader2, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+import { Link } from "wouter";
+import { useEffect } from "react";
 
 export default function Episode() {
-  const [, params] = useRoute("/episode/:videoId");
-  const videoId = params?.videoId;
+  const [, params] = useRoute("/episode/:slug");
+  const slug = params?.slug;
 
-  const { data: episode, isLoading, refetch } = trpc.episodes.getByVideoId.useQuery(
-    videoId || "",
-    { enabled: !!videoId }
+  const { data: episode, isLoading, refetch } = trpc.episodes.getBySlug.useQuery(
+    { slug: slug! },
+    { enabled: !!slug }
   );
-  
-  const generateSummaryMutation = trpc.episodes.generateSummary.useMutation({
+
+  const generateSummary = trpc.episodes.generateSummary.useMutation({
     onSuccess: () => {
       refetch();
-      toast.success("Episode summary generated!");
-    },
-    onError: (error) => {
-      toast.error(error.message || "Failed to generate summary");
     },
   });
+
+  // Auto-generate summary if not present
+  useEffect(() => {
+    if (episode && !episode.summary && episode.videoId && !generateSummary.isPending) {
+      generateSummary.mutate(episode.videoId);
+    }
+  }, [episode?.summary, episode?.videoId]);
 
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin mx-auto mb-4 text-[#E31E24]" />
-          <p className="text-white/60">Loading episode...</p>
+          <div className="text-2xl">Loading...</div>
         </div>
       </div>
     );
@@ -38,11 +39,9 @@ export default function Episode() {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-black mb-4">Episode Not Found</h1>
-          <Link href="/episodes">
-            <Button className="bg-[#E31E24] hover:bg-[#C01A1F] text-white font-bold">
-              Back to Episodes
-            </Button>
+          <div className="text-2xl mb-4">Episode not found</div>
+          <Link href="/episodes" className="text-[#E31E24] hover:underline">
+            Back to Episodes
           </Link>
         </div>
       </div>
@@ -52,128 +51,96 @@ export default function Episode() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+      <nav className="bg-black/90 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <img src="/awl-logo.svg" alt="AWL" className="h-10" />
+          <Link href="/">
+            <img src="/awl_logo.svg" alt="AWL" className="h-12" />
           </Link>
-          <div className="flex gap-8 items-center">
-            <Link href="/episodes" className="text-white/80 hover:text-white transition-colors font-medium">
+          <div className="flex gap-8">
+            <Link href="/episodes" className="hover:text-[#E31E24] transition-colors">
               Episodes
             </Link>
-            <Link href="/about" className="text-white/80 hover:text-white transition-colors font-medium">
+            <Link href="/about" className="hover:text-[#E31E24] transition-colors">
               About
             </Link>
-            <Link href="/contact" className="text-white/80 hover:text-white transition-colors font-medium">
+            <Link href="/contact" className="hover:text-[#E31E24] transition-colors">
               Contact
             </Link>
           </div>
         </div>
       </nav>
 
-      {/* Content */}
-      <div className="pt-24 pb-20">
-        <div className="container mx-auto px-6">
-          <Link href="/episodes" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Episodes
-          </Link>
+      <div className="container mx-auto px-6 py-12 max-w-5xl">
+        <Link href="/episodes" className="inline-flex items-center text-white/60 hover:text-[#E31E24] transition-colors mb-8">
+          ← Back to Episodes
+        </Link>
 
-          {/* AI-Generated Summary */}
-          <div className="max-w-5xl mx-auto mb-8">
-            {episode.summary ? (
-              <div className="bg-white/5 p-6 rounded-lg">
-                <h2 className="text-2xl font-bold mb-4 text-[#E31E24]">Episode Summary</h2>
-                <div className="text-white/80 leading-relaxed whitespace-pre-line">
-                  {episode.summary}
-                </div>
-              </div>
-            ) : (
-              <div className="bg-white/5 p-6 rounded-lg flex items-center justify-between">
-                <div>
-                  <h2 className="text-xl font-bold mb-2 text-[#E31E24]">No Summary Available</h2>
-                  <p className="text-white/60">Generate an AI summary of this episode</p>
-                </div>
-                <Button
-                  onClick={() => generateSummaryMutation.mutate(videoId || "")}
-                  disabled={generateSummaryMutation.isPending}
-                  className="bg-[#E31E24] hover:bg-[#C01A1F] text-white"
-                >
-                  {generateSummaryMutation.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Generating...
-                    </>
-                  ) : (
-                    "Generate Summary"
-                  )}
-                </Button>
-              </div>
-            )}
-          </div>
+        {/* Video Player */}
+        <div className="aspect-video mb-8 bg-black rounded-lg overflow-hidden border-2 border-[#E31E24]">
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${episode.videoId}`}
+            title={episode.title || "Episode"}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
 
-          {/* Video Player */}
-          <div className="aspect-video w-full max-w-5xl mx-auto mb-8 bg-black">
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${episode.videoId}`}
-              title={episode.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
+        {/* Episode Info */}
+        <h1 className="text-4xl md:text-5xl font-black mb-4">{episode.title}</h1>
+        
+        <div className="flex flex-wrap gap-4 text-white/60 mb-8">
+          <span>{episode.publishedTimeText}</span>
+          <span>•</span>
+          <span>{episode.views?.toLocaleString()} views</span>
+          <span>•</span>
+          <span>{Math.floor((episode.lengthSeconds || 0) / 60)}:{String((episode.lengthSeconds || 0) % 60).padStart(2, '0')}</span>
+        </div>
 
-          {/* Episode Info */}
-          <div className="max-w-5xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-black mb-4">
-              {episode.title}
-            </h1>
-            
-            <div className="flex gap-6 text-white/60 mb-6">
-              <span>{episode.publishedTimeText}</span>
-              {episode.views && (
-                <span>{episode.views.toLocaleString()} views</span>
-              )}
-              {episode.lengthSeconds && (
-                <span>
-                  {Math.floor(episode.lengthSeconds / 60)}:
-                  {String(episode.lengthSeconds % 60).padStart(2, "0")}
-                </span>
-              )}
-            </div>
-
-            {episode.description && (
-              <div className="bg-white/5 p-6 rounded-lg">
-                <h2 className="text-xl font-bold mb-3 text-[#E31E24]">About This Episode</h2>
-                <p className="text-white/80 whitespace-pre-wrap leading-relaxed">
-                  {episode.description}
-                </p>
-              </div>
-            )}
-
-            <div className="mt-8">
-              <a
-                href={`https://www.youtube.com/watch?v=${episode.videoId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Button className="bg-[#E31E24] hover:bg-[#C01A1F] text-white font-bold">
-                  Watch on YouTube
-                </Button>
-              </a>
+        {/* AI Summary */}
+        {episode.summary ? (
+          <div className="bg-white/5 p-8 rounded-lg mb-8">
+            <h2 className="text-2xl font-bold mb-4 text-[#E31E24]">Episode Summary</h2>
+            <div className="prose prose-invert prose-lg max-w-none whitespace-pre-wrap">
+              {episode.summary}
             </div>
           </div>
+        ) : generateSummary.isPending ? (
+          <div className="bg-white/5 p-8 rounded-lg mb-8">
+            <div className="flex items-center gap-3">
+              <div className="animate-spin h-5 w-5 border-2 border-[#E31E24] border-t-transparent rounded-full" />
+              <span>Generating AI summary...</span>
+            </div>
+          </div>
+        ) : null}
+
+        {/* Description */}
+        {episode.description && (
+          <div className="bg-white/5 p-8 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4 text-[#E31E24]">Description</h2>
+            <p className="text-white/80 whitespace-pre-wrap">{episode.description}</p>
+          </div>
+        )}
+
+        {/* Watch on YouTube Button */}
+        <div className="mt-8">
+          <a
+            href={`https://www.youtube.com/watch?v=${episode.videoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#E31E24] hover:bg-[#C11A1F] text-white font-bold px-8 py-4 rounded-lg transition-colors"
+          >
+            Watch on YouTube
+          </a>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-black border-t border-white/10 py-8">
+      <footer className="bg-black border-t border-white/10 py-8 mt-20">
         <div className="container mx-auto px-6 text-center text-white/60">
-          <p>&copy; {new Date().getFullYear()} A Dave Meyer Podcast | The Ageless Warrior Lab. All rights reserved.</p>
+          <p>© 2025 A Dave Meyer Podcast | The Ageless Warrior Lab. All rights reserved.</p>
         </div>
       </footer>
     </div>

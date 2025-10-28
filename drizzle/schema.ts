@@ -44,8 +44,9 @@ export type InsertContactSubmission = typeof contactSubmissions.$inferInsert;
  */
 export const episodes = mysqlTable("episodes", {
   id: int("id").autoincrement().primaryKey(),
-  videoId: varchar("videoId", { length: 64 }).notNull().unique(),
-  title: text("title").notNull(),
+  videoId: varchar("videoId", { length: 32 }).notNull().unique(),
+  slug: varchar("slug", { length: 255 }),
+  title: text("title"),
   description: text("description"),
   publishedTimeText: varchar("publishedTimeText", { length: 64 }),
   lengthSeconds: int("lengthSeconds"),

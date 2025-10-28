@@ -148,12 +148,12 @@ export default function Home() {
           ) : episodes && episodes.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {episodes.slice(0, 6).map((episode) => (
-                <Link key={episode.id} href={`/episode/${episode.videoId}`} className="group block bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden">
+                <Link key={episode.id} href={`/episode/${episode.slug || episode.videoId}`} className="group block bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden">
                     <div className="aspect-video relative overflow-hidden">
                       {episode.thumbnailUrl && (
                         <img
-                          src={episode.thumbnailUrl}
-                          alt={episode.title}
+                          src={episode.thumbnailUrl || ''}
+                          alt={episode.title || 'Episode'}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       )}
