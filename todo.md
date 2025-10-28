@@ -84,3 +84,6 @@
 - [x] Position warrior so body is above "THE AGELESS" text
 - [x] Align mountain base with black space at bottom of hero section
 
+
+- [x] Move warrior image down so mountain base extends below visible area
+
