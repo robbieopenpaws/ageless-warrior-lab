@@ -79,3 +79,8 @@
 - [x] Implement hamburger menu for mobile navigation
 - [x] Simplify logo on mobile to show only 'AWL' in a red triangle
 
+
+- [x] Replace warrior mountain image with new version (transp2.png)
+- [x] Position warrior so body is above "THE AGELESS" text
+- [x] Align mountain base with black space at bottom of hero section
+

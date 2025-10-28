@@ -61,16 +61,17 @@ export default function Home() {
         
         {/* Parallax warrior and mountain */}
         <div
-          className="absolute inset-0 flex items-start justify-center pt-20"
+          className="absolute inset-0 flex items-end justify-center"
           style={{
-            transform: `translate(${mousePosition.x * 40}px, ${mousePosition.y * 40}px) translateY(${parallaxOffset}px)`,
+            transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px) translateY(${parallaxOffset}px)`,
             transition: 'transform 0.15s ease-out',
           }}
         >
           <img
             src="/warrior_mountain_transparent.png"
             alt="Warrior on Mountain"
-            style={{ maxWidth: '800px', width: '80%', height: 'auto', position: 'absolute', bottom: '65%', left: '50%', transform: 'translateX(-50%)' }}
+            className="w-full max-w-3xl h-auto"
+            style={{ marginBottom: '0' }}
           />
         </div>
         
