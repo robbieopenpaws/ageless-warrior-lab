@@ -65,3 +65,7 @@
 - [x] Create transparent PNG of warrior on mountain for enhanced parallax effect
 - [x] Implement mouse-tracking parallax effect on homepage
 
+
+- [x] Fix transparent PNG showing grey checkered pattern
+- [x] Add orange/yellow sky background layer for parallax effect
+

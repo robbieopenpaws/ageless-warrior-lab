@@ -50,9 +50,11 @@ export default function Home() {
 
       {/* Hero Section with Parallax */}
       <section className="relative h-screen overflow-hidden">
-        {/* Background Image with Parallax */}
-        {/* Black background */}
-        <div className="absolute inset-0 bg-black" />
+        {/* Sky background layer (static) */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/parallax_sky.png')" }}
+        />
         
         {/* Parallax warrior and mountain */}
         <div
@@ -63,7 +65,7 @@ export default function Home() {
           }}
         >
           <img
-            src="/warrior_mountain_transparent.png"
+            src="/warrior_mountain.png"
             alt="Warrior on Mountain"
             className="h-full w-auto object-contain"
           />
