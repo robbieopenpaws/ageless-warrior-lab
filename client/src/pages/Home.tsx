@@ -67,7 +67,7 @@ export default function Home() {
           <img
             src="/warrior_mountain_transparent.png"
             alt="Warrior on Mountain"
-            style={{ maxWidth: '2000px', width: '150%', height: 'auto', position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)' }}
+            style={{ maxWidth: '800px', width: '80%', height: 'auto', position: 'absolute', bottom: '65%', left: '50%', transform: 'translateX(-50%)' }}
           />
         </div>
         
