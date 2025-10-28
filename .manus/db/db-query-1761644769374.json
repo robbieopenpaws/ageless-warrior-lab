@@ -1,0 +1,15 @@
+{
+  "query": "SELECT videoId, title, thumbnailUrl FROM episodes WHERE title LIKE '%Facing Fear%' LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4A4fnJXzvJATZ1U.30ca11f6a272 --database kmUoamy3XCMsjFbxvpr5dU --execute SELECT videoId, title, thumbnailUrl FROM episodes WHERE title LIKE '%Facing Fear%' LIMIT 1",
+  "rows": [
+    {
+      "videoId": "iyDnsOXCXA4",
+      "title": "Facing Fear: Lessons from a Hurricane Rescue & Martial Arts Mastery | Ep. 8",
+      "thumbnailUrl": "https://i9.ytimg.com/vi/iyDnsOXCXA4/hqdefault_custom_3.jpg?sqp=CMCe_8cG-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLALBqvbSmdRKszA3w7j4RGbENR2MQ"
+    }
+  ],
+  "messages": [],
+  "stdout": "videoId\ttitle\tthumbnailUrl\niyDnsOXCXA4\tFacing Fear: Lessons from a Hurricane Rescue & Martial Arts Mastery | Ep. 8\thttps://i9.ytimg.com/vi/iyDnsOXCXA4/hqdefault_custom_3.jpg?sqp=CMCe_8cG-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLALBqvbSmdRKszA3w7j4RGbENR2MQ\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

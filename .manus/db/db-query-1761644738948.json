@@ -1,0 +1,15 @@
+{
+  "query": "SELECT videoId, title, thumbnailUrl FROM episodes ORDER BY createdAt DESC LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4A4fnJXzvJATZ1U.30ca11f6a272 --database kmUoamy3XCMsjFbxvpr5dU --execute SELECT videoId, title, thumbnailUrl FROM episodes ORDER BY createdAt DESC LIMIT 1",
+  "rows": [
+    {
+      "videoId": "dWmn-lt-3Cw",
+      "title": "Warmup 03 Pummeling",
+      "thumbnailUrl": "https://i.ytimg.com/vi/dWmn-lt-3Cw/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gSAAuADigIMCAAQARg3IEEofzAP&rs=AOn4CLDEzU0x_mCIOgUfmMx9mjiXHkq0-w"
+    }
+  ],
+  "messages": [],
+  "stdout": "videoId\ttitle\tthumbnailUrl\ndWmn-lt-3Cw\tWarmup 03 Pummeling\thttps://i.ytimg.com/vi/dWmn-lt-3Cw/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gSAAuADigIMCAAQARg3IEEofzAP&rs=AOn4CLDEzU0x_mCIOgUfmMx9mjiXHkq0-w\n",
+  "stderr": "",
+  "execution_time_ms": 108
+}

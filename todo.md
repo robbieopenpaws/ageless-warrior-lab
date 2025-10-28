@@ -54,3 +54,6 @@
 - [x] Investigated episode thumbnails - all loading correctly from YouTube
 - [x] Fix logo not loading on individual episode pages
 
+
+- [x] Fix broken thumbnail for first episode on episodes page
+

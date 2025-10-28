@@ -17,7 +17,7 @@ export default function Episodes() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/awl-logo.svg" alt="AWL" className="h-10" />
+            <img src="/awl_logo.svg" alt="AWL" className="h-10" />
           </Link>
           <div className="flex gap-8 items-center">
             <Link href="/episodes" className="text-[#E31E24] font-bold transition-colors">
@@ -65,14 +65,16 @@ export default function Episodes() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {episodes.map((episode) => (
                 <Link key={episode.id} href={`/episode/${episode.slug || episode.videoId}`} className="group block bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden">
-                    <div className="aspect-video relative overflow-hidden">
-                      {episode.thumbnailUrl && (
-                        <img
-                          src={episode.thumbnailUrl || ''}
-                          alt={episode.title || 'Episode'}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      )}
+                    <div className="aspect-video relative overflow-hidden bg-zinc-900">
+                      <img
+                        src={episode.thumbnailUrl || '/placeholder-thumbnail.jpg'}
+                        alt={episode.title || 'Episode'}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     </div>
                     <div className="p-6">
