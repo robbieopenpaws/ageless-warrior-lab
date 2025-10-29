@@ -81,22 +81,22 @@ export default function Home() {
         {/* Content */}
         <div className="relative h-full flex items-center justify-center text-center px-6">
           <div className="max-w-4xl">
-            <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black mb-4 md:mb-6 tracking-tight leading-tight">
               THE AGELESS
               <br />
               <span className="text-[#E31E24]">WARRIOR LAB</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-2xl text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
               Exploring mastery, resilience, and the warrior mindset with host Dave Meyer
             </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="/episodes">
-                <Button size="lg" className="bg-[#E31E24] hover:bg-[#C01A1F] text-white font-bold px-8 py-6 text-lg">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Link href="/episodes" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-[#E31E24] hover:bg-[#C01A1F] text-white font-bold px-6 py-4 sm:px-8 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                   Watch Episodes
                 </Button>
               </Link>
-              <Link href="/about">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black font-bold px-8 py-6 text-lg">
+              <Link href="/about" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black font-bold px-6 py-4 sm:px-8 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                   About the Host
                 </Button>
               </Link>

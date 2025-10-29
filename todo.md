@@ -93,3 +93,8 @@
 
 - [x] Update About page text with new comprehensive biography
 
+
+- [x] Fix mobile homepage title sizes and layout
+- [x] Adjust subtitle text to fit properly on mobile
+- [x] Optimize button sizes for mobile view
+
