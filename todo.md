@@ -90,3 +90,6 @@
 
 - [x] Shift mountain image down 30px so base extends below black bar
 
+
+- [x] Update About page text with new comprehensive biography
+

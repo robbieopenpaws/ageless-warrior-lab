@@ -45,31 +45,55 @@ export default function About() {
                 
                 <div className="space-y-6 text-white/80 leading-relaxed">
                   <p>
-                    David Meyer is a pioneering American Brazilian Jiu Jitsu practitioner, and accomplished non-profit founder and Philanthropist.
+                    Dave Meyer is a pioneering American Brazilian Jiu Jitsu practitioner, and accomplished non-profit founder and Philanthropist.
                   </p>
 
                   <p>
-                    David co-founded and served as CEO of Adopt-a-Pet.com for two decades, turning it into the world's largest nonprofit homeless pet adoption website and helping save millions of animals, before its acquisition by Mars Inc.
+                    Dave began training Jiu Jitsu as a young child in 1968. He trained Kung Fu under Sifu Douglas Wong and taught Jiu Jitsu at Steven Seagal's Tenshin Dojo when Segal first returned from Japan to teach Aikido.
                   </p>
 
                   <p>
-                    Today, David leads Food System Innovations and Humane America Animal Foundation, leading in farm animal welfare and the protein transition movement. He frequently advises U.S. lawmakers on these issues, and has raised and deployed over $160 million in philanthropic capital as part of his work in the nonprofit space.
+                    Dave was head instructor of Jiu Jitsu at UCLA and holds a 3rd degree black belt Seki Ryu Ju Jitsu and an honorary 4th degree black belt in Danzan Ryu/Small Circle Jiu Jitsu. He began training Brazilian Jiu-Jitsu in 1990, and was one of the first Americans to reach black belt (referred to as "the Dirty Dozen"), receiving his rank in 1996 from Rigan Machado. He is a 6th degree black belt in BJJ and was trained by Rigan, Jean Jacques, Carlos, John and Roger Machado.
                   </p>
 
                   <p>
-                    In his athletic career, David has risen to the highest ranks of Brazilian Jiu Jitsu (BJJ). He earned his black belt from Rigan Machado in 1996 and ranked among the first Americans ("the Dirty Dozen") to do so. He was the first American to medal at the black belt level at the BJJ World Championships in Brazil in 1998, and continues to compete, winning world championship titles in his age division.
+                    He was the first American to win a medal at the black belt level at a BJJ World Championship, earning the Bronze Medal in Black Belt Open Weight Class division in Brazil in 1998. He also won the first ever BJJ competition held in the United States (a cross-school competition between the Tarzana and Redondo Beach Machado Brothers schools in 1994).
                   </p>
 
                   <p>
-                    As a martial artist and instructor, he taught at UCLA, Steven Seagal's Tenshin Dojo, and developed globally used grappling curricula with John Will, including customized material for Chuck Norris's UFAF association.
+                    He partnered in 1999 with Professor John Will (who is the first Australian to earn a black belt in BJJ and the first Australian Coral belt) to create grappling and MMA curriculums in manuals/videos/DVDs sold to nearly 1,000 martial arts schools around the world across all styles, including a customized version for Chuck Norris and his UFAF association.
                   </p>
 
                   <p>
-                    Meyer also played a critical role in post-Katrina animal rescue, co-authored key books on BJJ and pet care, and co-founded a Haiti orphanage for children with HIV, exemplifying a lifetime of impactful leadership in both martial arts and philanthropy.
+                    He has taught seminars around the world to martial arts instructors, law enforcement and military of all types, and general practitioners.
                   </p>
 
                   <p>
-                    David resides in the San Francisco Bay, and continues to coach BJJ athletes while actively managing Food System Innovations and Humane America Animal Foundation.
+                    He authored the book "Training for Competition: Brazilian Jiu Jitsu and Submission Grappling," and co-authored "The Triangle" with Rigan Machado, and "BJJ Essential Tactics" and "BJJ Level Up Your Game" with John Will. Over the years he has been a coach and training partner for numerous MMA fighters in Los Angeles and San Francisco, and I still actively competes in BJJ and has won many world championship titles in his age division over the years.
+                  </p>
+
+                  <p>
+                    He is also a passionate advocate for animal welfare and is an executive with deep experience at the nexus of the nonprofit and for-profit sectors.
+                  </p>
+
+                  <p>
+                    He is co-founder and CEO of Humane America Animal Foundation and Food System Innovations. He regularly meets with U.S. Senators and Representatives, and has a long list of philanthropic accomplishments.
+                  </p>
+
+                  <p>
+                    He has raised and deployed over $180 million in philanthropic capital as part of his work in the nonprofit space.
+                  </p>
+
+                  <p>
+                    He co-founded and ran Adopt-a-Pet.com for 22 years, taking it from just an idea, to the world's largest nonprofit homeless pet adoption website. He and his team grew it to a multimillion dollar budget, funded by major companies including Nestle Purina, Chewy, Bayer, Petco, Petco Foundation (Petco Love) and others, ultimately selling the program to Kinship Partners, a division of Mars. Inc. Adopt-a-Pet.com reaches millions of website visitors every month, and lists hundreds of thousands of adoptable pets from over 19,000 animal welfare organizations. It is estimated that Adopt-a-Pet.com has helped save the lives of millions of pets and in doing so enhanced the lives of millions of families.
+                  </p>
+
+                  <p>
+                    He co-led the animal rescue efforts in New Orleans post-Katrina saving over 17,000 stranded and starving animals. He is a co-author of the books "Total Dog Manual" and "Total Cat Manual".
+                  </p>
+
+                  <p>
+                    Dave also cofounded an orphanage in Haiti for children with HIV, and has led numerous self-defense and empowerment programs for women and children, including serving on the board of Tuff Love Fitness, a non-profit that provides accessible and affordable self-defense, martial arts, and fitness training for populations that may be underserved by martial arts schools.
                   </p>
                 </div>
               </div>
