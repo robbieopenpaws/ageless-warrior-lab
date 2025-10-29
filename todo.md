@@ -98,3 +98,6 @@
 - [x] Adjust subtitle text to fit properly on mobile
 - [x] Optimize button sizes for mobile view
 
+
+- [x] Add Google Tag Manager (gtag.js) tracking code
+
