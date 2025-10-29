@@ -1,0 +1,28 @@
+{
+  "buildCommand": "pnpm install && pnpm build",
+  "outputDirectory": "dist/public",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "JWT_SECRET": "@jwt_secret",
+    "VITE_APP_TITLE": "The Ageless Warrior Lab",
+    "VITE_APP_LOGO": "/awl_logo.svg"
+  },
+  "crons": [
+    {
+      "path": "/api/cron/sync-youtube",
+      "schedule": "0 10 * * 3"
+    },
+    {
+      "path": "/api/cron/sync-podcast",
+      "schedule": "0 9 * * 3"
+    }
+  ]
+}
+
